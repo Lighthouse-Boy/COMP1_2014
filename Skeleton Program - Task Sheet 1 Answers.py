@@ -7,6 +7,7 @@ import random
 from datetime import date
 
 NO_OF_RECENT_SCORES = 3
+ACE_HIGH = False
 
 class TCard():
   def __init__(self):
@@ -73,6 +74,7 @@ def DisplayMenu():
   print('2. Play game (without shuffle)')
   print('3. Display recent scores')
   print('4. Reset recent scores')
+  print('5. Options')
   print()
   print('Select an option from the menu (or enter q to quit): ', end='')
 
@@ -180,6 +182,35 @@ def DisplayRecentScores(RecentScores):
   input()
   print()
 
+#--------------------------------------------------------------------------------------------- Task 6 
+
+def DisplayOptions():
+  print("1. Set Ace to be HIGH or LOW")
+  print()
+  print("select an option from the menu (or enter q to quit: ", end=' ')
+
+
+def GetOptionChoice():
+  Choice = input
+  return Choice
+
+def SetOptions(Choice):
+  if Choice == 1:
+    SetAceHighOrLow()
+  else:
+    print("{0} isn't a valid input".format(Choice))
+  
+def SetAceHighOrLow():
+  Choice = input ("enter 1 to make the Ace high and enter 2 to make the Ace low")
+  if Choice == "1":
+    ACE_HIGH = True
+  elif Choice == "2":
+    ACE_HIGH = False
+  else:
+    print("Please enter a valid choice")
+  
+#---------------------------------------------------------------------------------------------
+
 def UpdateRecentScores(RecentScores, Score):
   valid = False
   while not valid:
@@ -254,5 +285,9 @@ if __name__ == '__main__':
       PlayGame(Deck, RecentScores)
     elif Choice == '3':
       DisplayRecentScores(RecentScores)
-    else:
+    elif Choice == '4':
       ResetRecentScores(RecentScores)
+    elif Choice == '5':
+      DisplayOptions()
+      GetOptionChoice()
+      
