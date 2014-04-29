@@ -5,6 +5,7 @@
 
 import random
 from datetime import date
+import pdb
 
 NO_OF_RECENT_SCORES = 3
 ACE_HIGH = False
@@ -187,11 +188,11 @@ def DisplayRecentScores(RecentScores):
 def DisplayOptions():
   print("1. Set Ace to be HIGH or LOW")
   print()
-  print("select an option from the menu (or enter q to quit: ", end=' ')
+  print("select an option from the menu (or enter q to quit): ", end=' ')
 
 
 def GetOptionChoice():
-  Choice = input
+  Choice = int(input())
   return Choice
 
 def SetOptions(Choice):
@@ -201,13 +202,15 @@ def SetOptions(Choice):
     print("{0} isn't a valid input".format(Choice))
   
 def SetAceHighOrLow():
-  Choice = input ("enter 1 to make the Ace high and enter 2 to make the Ace low")
-  if Choice == "1":
+  pdb.set_trace()
+  Choice = int(input ("enter 1 to make the Ace high and enter 2 to make the Ace low: "))
+  if Choice == 1:
     ACE_HIGH = True
-  elif Choice == "2":
+  elif Choice == 2:
     ACE_HIGH = False
   else:
     print("Please enter a valid choice")
+
   
 #---------------------------------------------------------------------------------------------
 
@@ -220,7 +223,6 @@ def UpdateRecentScores(RecentScores, Score):
       valid = True
     else:
       print("Please enter a valid choice (y or n)")
-
   if Choice == "y":
     PlayerName = GetPlayerName()
     FoundSpace = False
@@ -289,5 +291,6 @@ if __name__ == '__main__':
       ResetRecentScores(RecentScores)
     elif Choice == '5':
       DisplayOptions()
-      GetOptionChoice()
+      Choice = GetOptionChoice()
+      SetOptions(Choice)
       
