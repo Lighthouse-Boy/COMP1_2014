@@ -40,9 +40,11 @@ def GetRank(RankNo):
   elif RankNo == 6:
     Rank = 'Six'
   elif RankNo == 7:
+    
     Rank = 'Seven'
   elif RankNo == 8:
     Rank = 'Eight'
+    
   elif RankNo == 9:
     Rank = 'Nine'
   elif RankNo == 10:
@@ -51,8 +53,8 @@ def GetRank(RankNo):
     Rank = 'Jack'
   elif RankNo == 12:
     Rank = 'Queen'
-  else:
-    Rank = 'King'
+  elif RankNo == 13:
+    Rank = 'King' 
   return Rank
 
 def GetSuit(SuitNo):
@@ -125,9 +127,12 @@ def GetCard(ThisCard, Deck, NoOfCardsTurnedOver):
   Deck[52 - NoOfCardsTurnedOver].Rank = 0
 
 def IsNextCardHigher(LastCard, NextCard):
+  #pdb.set_trace()
   Higher = False
   if NextCard.Rank > LastCard.Rank:
     Higher = True
+  if ACE_HIGH and Higher:
+    Higher = False
   return Higher
 
 def GetPlayerName():
@@ -202,7 +207,8 @@ def SetOptions(Choice):
     print("{0} isn't a valid input".format(Choice))
   
 def SetAceHighOrLow():
-  pdb.set_trace()
+  global ACE_HIGH
+  #pdb.set_trace()
   Choice = int(input ("enter 1 to make the Ace high and enter 2 to make the Ace low: "))
   if Choice == 1:
     ACE_HIGH = True
@@ -238,10 +244,12 @@ def UpdateRecentScores(RecentScores, Score):
         RecentScores[Count].Score = RecentScores[Count + 1].Score
       Count = NO_OF_RECENT_SCORES
     RecentScores[Count].Name = PlayerName
-    RecentScores[Count].Score = Score
+    RecentScores[Count].Sc
+    ore = Score
     RecentScores[Count].Date = date.today()
 
 def PlayGame(Deck, RecentScores):
+  #pdb.set_trace()
   LastCard = TCard()
   NextCard = TCard()
   GameOver = False
@@ -274,6 +282,7 @@ if __name__ == '__main__':
     Deck.append(TCard())
   for Count in range(1, NO_OF_RECENT_SCORES + 1):
     RecentScores.append(TRecentScore())
+  #pdb.set_trace()
   Choice = ''
   while Choice != 'q':
     DisplayMenu()
@@ -294,3 +303,4 @@ if __name__ == '__main__':
       Choice = GetOptionChoice()
       SetOptions(Choice)
       
+
