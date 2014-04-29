@@ -135,6 +135,7 @@ def IsNextCardHigher(LastCard, NextCard):
     Higher = False
   return Higher
 
+
 def GetPlayerName():
   print()
   valid = False
@@ -187,6 +188,13 @@ def DisplayRecentScores(RecentScores):
   print('Press the Enter key to return to the main menu')
   input()
   print()
+
+#--------------------------------------------------------------------------------------------- Task 7
+
+def BubbleSortScore(RecentScores):
+  
+
+#---------------------------------------------------------------------------------------------
 
 #--------------------------------------------------------------------------------------------- Task 6 
 
