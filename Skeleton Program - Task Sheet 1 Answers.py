@@ -40,11 +40,9 @@ def GetRank(RankNo):
   elif RankNo == 6:
     Rank = 'Six'
   elif RankNo == 7:
-    
     Rank = 'Seven'
   elif RankNo == 8:
     Rank = 'Eight'
-    
   elif RankNo == 9:
     Rank = 'Nine'
   elif RankNo == 10:
@@ -82,8 +80,10 @@ def DisplayMenu():
   print('Select an option from the menu (or enter q to quit): ', end='')
 
 def GetMenuChoice():
-  Choice = input()
-  print()
+  Choice = ''
+  while Choice == '':
+    Choice = input()
+    
   return Choice.lower()[0]
 
 def LoadDeck(Deck):
@@ -149,7 +149,9 @@ def GetPlayerName():
   return PlayerName
 
 def GetChoiceFromUser():
-  Choice = input('Do you think the next card will be higher than the last card (enter y or n)? ')
+  Choice = ''
+  if Choice == '':
+    Choice = input('Do you think the next card will be higher than the last card (enter y or n)? ')
   return Choice.lower()[0]
 
 def DisplayEndOfGameMessage(Score):
@@ -191,8 +193,31 @@ def DisplayRecentScores(RecentScores):
 
 #--------------------------------------------------------------------------------------------- Task 7
 
+def GetTestScores(RecentScores):
+  for Count in range(1, NO_OF_RECENT_SCORES + 1):
+    RecentScores[Count].Name = ('Test_{0}'.format(str(Count)))
+    RecentScores[Count].Score = random.randint(1,20)
+    RecentScores[Count].Date = date.today()
+
 def BubbleSortScore(RecentScores):
-  
+  sort = False
+  while not sort:
+    sort = True
+    for count in range(1, NO_OF_RECENT_SCORES):
+      if RecentScores[Count].Score < RecentScores[Count + 1].Score:
+        sort = False
+        temp = RecentScores[Count + 1].Score
+        
+        RecentScores[Count + 1].Score = RecentScores[Count + 1]
+        RecentScores[Count + 1].Score = temp
+
+        temp = RecentScores[Count + 1].Name
+        RecentScores[Count + 1].Name = RecentScores[Count + 1]
+        RecentScores[Count + 1].Name = temp
+
+        temp = RecentScores[Count + 1].Date
+        RecentScores[Count + 1].Date = RecentScores[Count + 1]
+        RecentScores[Count + 1].Date = temp
 
 #---------------------------------------------------------------------------------------------
 
@@ -248,12 +273,12 @@ def UpdateRecentScores(RecentScores, Score):
         Count = Count + 1
     if not FoundSpace:
       for Count in range(1, NO_OF_RECENT_SCORES):
+        
         RecentScores[Count].Name = RecentScores[Count + 1].Name
         RecentScores[Count].Score = RecentScores[Count + 1].Score
       Count = NO_OF_RECENT_SCORES
     RecentScores[Count].Name = PlayerName
-    RecentScores[Count].Sc
-    ore = Score
+    RecentScores[Count].Score = Score
     RecentScores[Count].Date = date.today()
 
 def PlayGame(Deck, RecentScores):
@@ -304,6 +329,7 @@ if __name__ == '__main__':
       PlayGame(Deck, RecentScores)
     elif Choice == '3':
       DisplayRecentScores(RecentScores)
+      BubbleSortScore(RecentScores)
     elif Choice == '4':
       ResetRecentScores(RecentScores)
     elif Choice == '5':
